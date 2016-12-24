@@ -25,6 +25,7 @@ uygulama.controller("ngKontrol", function($scope, $http) {
         });
     });
     $scope.findPeaks = function() {
+        console.log("Find the max and min inputs of the given data in rawdata.txt");
         var i = 0;
         while (i < arrayRawData.length) {
             if (minAge > parseInt(arrayRawData[i][0])) {
@@ -50,6 +51,7 @@ uygulama.controller("ngKontrol", function($scope, $http) {
     }
 
     $scope.normalize = function() {
+        console.log("Read and normalize the data.");
         arrayRawData.forEach(function(setItem) {
             var tempSetItem = [];
             tempSetItem.push(calculateMinMax(minAge, maxAge, setItem[0]));
@@ -79,7 +81,7 @@ uygulama.controller("ngKontrol", function($scope, $http) {
             var tempWeightSet = [];
             var i = 0;
             while (i < hiddenLayerNodeNumber) {
-                tempWeightSet.push(0.5); // Math.random()
+                tempWeightSet.push(Math.random()); // Math.random()
                 i++;
             }
             weightSet1.push(tempWeightSet);
@@ -108,7 +110,7 @@ uygulama.controller("ngKontrol", function($scope, $http) {
         var alfa;
         while (i < hiddenLayerNodeNumber) {
             alfa = (weightSet1[0][i] * age) + (weightSet1[1][i] * year) + (weightSet1[2][i] * node);
-            hiddenLayerNodes[i] = 1 / (Math.pow(Math.E, alfa * (-1)) + 1);
+            hiddenLayerNodes[i] = 1 / (Math.exp(alfa * (-1)) + 1);
             i++;
         }
         var j = 0;
@@ -117,7 +119,7 @@ uygulama.controller("ngKontrol", function($scope, $http) {
             sumOfSet2 += weightSet2[j] * hiddenLayerNodes[j];
             j++;
         }
-        var result = 1 / (Math.pow(Math.E, sumOfSet2 * (-1)) + 1);
+        var result = 1 / (Math.exp(sumOfSet2 * (-1)) + 1);
 
         var error = Math.pow(survival - result, 2) / 2;
         //error
@@ -167,7 +169,7 @@ uygulama.controller("ngKontrol", function($scope, $http) {
         var alfa;
         while (i < hiddenLayerNodeNumber) {
             alfa = (weightSet1[0][i] * age) + (weightSet1[1][i] * year) + (weightSet1[2][i] * node);
-            hiddenLayerNodes[i] = 1 / (Math.pow(Math.E, alfa * (-1)) + 1);
+            hiddenLayerNodes[i] = 1 / (Math.exp(alfa * (-1)) + 1);
             i++;
         }
         var j = 0;
@@ -176,20 +178,21 @@ uygulama.controller("ngKontrol", function($scope, $http) {
             sumOfSet2 += weightSet2[j] * hiddenLayerNodes[j];
             j++;
         }
-        var result = 1 / (Math.pow(Math.E, sumOfSet2 * (-1)) + 1);
+        var result = 1 / (Math.exp(sumOfSet2 * (-1)) + 1);
 
         var error = Math.pow(survival - result, 2) / 2;
         console.log(error);
     }
 
     $scope.init = function() {
-
         shuffle(arrayNormalized);
         randomizeWeights();
+        console.log("Randomize the weights.");
         createHiddenNodes();
     }
 
     $scope.teachAll = function() {
+        console.log("Teach %80 of the data given in the rawdata.txt file.");
         var t = 0;
         while (t < 100) {
             var a = 0;
@@ -202,6 +205,7 @@ uygulama.controller("ngKontrol", function($scope, $http) {
     }
 
     $scope.checkIntegrity = function() {
+        console.log("Checking the integrity of rest of the data.");
         var a = parseInt(arrayNormalized.length * 0.8);
         while (a < arrayNormalized.length) {
             check(arrayNormalized[a]);
