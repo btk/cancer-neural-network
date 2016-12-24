@@ -1,0 +1,119 @@
+body {
+    font-family: "Cairo", sans-serif;
+    background: #fafafa;
+    letter-spacing: 0.3px;
+    color: #555;
+}
+
+.header {
+    height: 40px;
+    background: #E97A77;
+    width: 100%;
+    color: #fff;
+    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 97;
+}
+
+.carrier {
+    max-width: 800px;
+    width: 100%;
+    margin: auto;
+    position: relative;
+}
+
+.carrier-small {
+    max-width: 600px;
+}
+
+.logo {
+    float: left;
+    line-height: 40px;
+    margin: auto;
+    width: 280px;
+    text-align: center;
+    width: 100%;
+}
+
+.header i {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    line-height: 40px;
+    width: 40px;
+    height: 40px;
+    text-align: center !important;
+    color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+}
+
+.header i.search {
+    left: auto;
+    right: 0px;
+}
+
+.box {
+    border: 1px solid #eee;
+    background: #fff;
+    margin: 10px 0px;
+}
+
+.box img {
+    width: calc(100% - 6px);
+    padding: 3px;
+}
+
+.box .title {
+    text-align: center;
+    padding: 5px 0px;
+}
+
+#content {
+    height: calc(100% - 40px);
+    overflow: scroll;
+}
+
+#cover {
+    display: none;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0);
+    z-index: 98;
+    transition: 400ms background;
+}
+
+.menuBar {
+    position: absolute;
+    width: 280px;
+    height: 100%;
+    background: #fff;
+    border-right: 1px solid #eee;
+    z-index: 99;
+    left: -290px;
+    transition: 200ms all;
+}
+
+.menuBar li {
+    color: #555;
+    padding: 5px 15px;
+    cursor: pointer;
+    border-bottom: 1px solid #fafafa;
+}
+
+.menuBar li:hover {
+    background: #fafafa;
+}
+
+@media screen and (max-width: 600px) {
+    .box {
+        border: 0px;
+        border-bottom: 1px solid #eee;
+    }
+    .box img {
+        padding: 0px;
+        width: 100%;
+    }
+}
