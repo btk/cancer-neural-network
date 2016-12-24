@@ -3,7 +3,8 @@ var uygulama = angular.module("ngUygulamam", []);
 uygulama.controller("ngKontrol", function($scope, $http) {
     var arrayRawData = [];
     var arrayNormalized = [];
-    var learningRate = 0.1;
+    var epoch = 100; // Time to repeat learning process.
+    var learningRate = 0.3; // Learning rate.
     var minAge = 100,
         minYear = 100,
         minNode = 100;
@@ -194,7 +195,7 @@ uygulama.controller("ngKontrol", function($scope, $http) {
     $scope.teachAll = function() {
         console.log("Teach %80 of the data given in the rawdata.txt file.");
         var t = 0;
-        while (t < 100) {
+        while (t < epoch) {
             var a = 0;
             while (a < arrayNormalized.length * 0.8) {
                 queue(arrayNormalized[a]);
